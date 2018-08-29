@@ -10,24 +10,24 @@
   <body>
     <div class="container">
     
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container-fluid">
+      <nav class="navbar navbar-light bg-light" role="navigation"
+           style="margin-bottom: 2ex;">
+        <!--<div class="container-fluid">-->
           <a class="navbar-brand" href="/">Superlists</a>
           {% if user.email %}
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav navbar-right">
               <li class="navbar-text">Logged in as {{ user.email }}</li>
               <li><a href="{% url 'logout' %}">Log out</a></li>
             </ul>
           {% else %}
-            <form class="navbar-form navbar-right"
-                  method="POST"
+            <form class="form-inline navbar-right" method="POST"
                   action="{% url 'send_login_email' %}">
-            <span>Enter email to log in:</span>
-            <input class="form-control" name="email" type="text" />
+            <input class="form-control" name="email" type="text"
+                   placeholder="Enter email to log in" />
             {% csrf_token %}
             </form>
           {% endif %}
-        </div>
+        <!--</div>-->
       </nav>
       
       {% if messages %}
@@ -45,7 +45,7 @@
       {% endif %}
     
       <div class="row">
-        <div class="offset-md-3 col-md-6 jumbotron">
+        <div class="col offset-md-3 col-md-6 jumbotron">
           <div class="text-center">
             <h1>{% block header_text %}{% endblock %}</h1>
             <form method="POST" action="{% block form_action %}{% endblock %}">

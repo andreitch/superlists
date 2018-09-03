@@ -1,4 +1,5 @@
 from .base import FunctionalTest
+from .list_page import ListPage
 
 
 class MyListsTest(FunctionalTest):
@@ -18,10 +19,10 @@ class MyListsTest(FunctionalTest):
         self.create_pre_authenticated_session('edith@example.com')
 
         # She goes to the home page and starts a list
-        self.browser.get(self.live_server_url)
-        self.add_list_item('Reticulate splines')
-        self.add_list_item('Immanentize eschaton')
-        first_list_url = self.browser.current_url
+        first_list_page = ListPage(self) \
+            .add_list_item('Reticulate splines') \
+            .add_list_item('Immanentize eschaton')
+        first_list_url = first_list_page.url
 
         # She notices a "My lists" link, for the first time.
         self.browser.find_element_by_link_text('My lists').click()
@@ -37,9 +38,9 @@ class MyListsTest(FunctionalTest):
         )
 
         # She decides to start another list, just to see
-        self.browser.get(self.live_server_url)
-        self.add_list_item('Click cows')
-        second_list_url = self.browser.current_url
+        second_list_page = ListPage(self) \
+            .add_list_item('Click cows')
+        second_list_url = second_list_page.url
 
         # Under "my lists", her new list appears
         self.browser.find_element_by_link_text('My lists').click()

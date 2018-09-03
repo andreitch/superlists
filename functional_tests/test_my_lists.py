@@ -1,5 +1,6 @@
 from .base import FunctionalTest
 from .list_page import ListPage
+from .my_lists_page import MyListsPage
 
 
 class MyListsTest(FunctionalTest):
@@ -25,7 +26,7 @@ class MyListsTest(FunctionalTest):
         first_list_url = first_list_page.url
 
         # She notices a "My lists" link, for the first time.
-        self.browser.find_element_by_link_text('My lists').click()
+        MyListsPage(self).go_to_my_lists_page()
 
         # She sees that her list is in there, named according to its
         # first list item
@@ -43,7 +44,7 @@ class MyListsTest(FunctionalTest):
         second_list_url = second_list_page.url
 
         # Under "my lists", her new list appears
-        self.browser.find_element_by_link_text('My lists').click()
+        MyListsPage(self).go_to_my_lists_page()
         self.wait_for(
             lambda: self.browser.find_element_by_link_text('Click cows')
         )

@@ -7,7 +7,7 @@ from lists.forms import (
 import unittest
 from unittest.mock import patch, Mock
 from django.http import HttpRequest
-from lists.views import NewListView
+from lists.views import NewListView, ViewAndAddToList
 from django.utils.html import escape
 from django.contrib.auth import get_user_model
 User = get_user_model()
@@ -181,3 +181,12 @@ class NewListViewUnitTest(unittest.TestCase):
         response = new_list_view.form_valid(mock_form)
         self.assertEqual(response, mock_redirect.return_value)
         mock_redirect.assert_called_once_with(mock_form.save.return_value)
+
+
+class ViewAndAddToListTest(unittest.TestCase):
+
+    def test_cbv_gets_correct_object(self):
+        our_list = List.objects.create()
+        view = ViewAndAddToList()
+        view.kwargs = dict(pk=our_list.id)
+        self.assertEqual(view.get_object(), our_list)

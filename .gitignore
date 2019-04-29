@@ -4,4 +4,6 @@ __pycache__
 *.pyc
 *.sublime*
 .spyproject
-functional_tests/screendumps
+source/functional_tests/screendumps
+virtualenv
+.idea

@@ -5,4 +5,4 @@ live ansible_become=yes ansible_ssh_user=andrii
 staging ansible_become=yes ansible_ssh_user=andrii
 
 [ansible]
-ansible ansible_become=yes ansible_ssh_user=andrii
+ansible ansible_become=yes ansible_ssh_user=andrii ansible_python_interpreter=/usr/bin/python3

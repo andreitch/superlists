@@ -1,2 +1,4 @@
 -r requirements.txt
 fabric3==1.14.post1
+selenium==3.141.0
+ansible==2.7.10
